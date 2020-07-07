@@ -25,45 +25,24 @@ typedef pair<int, int> pii;
 typedef vector<vector<ll>> matrix;
 typedef pair<ll, ll> pll;
 
-
 // remember you may need to reset state
-/*
-1
-1 3
-= 9
-
-1
-2 3
-= 8
-*/
-void rsolve(ll x, ll y) {
-    if(x == 0 && y == 0){cout << "1"; return;}
-    ll z = max(x,y);
-    ll z2 = (z-1)*(z-1), ans;
-    if(z%2) {
-        if(y==z) {
-            ans = z2+x;
-        } else {
-            ans = z2+2*z-y;
-        }
-    } else {
-        if(x==z){
-            ans=z2+y;
-        }else {
-            ans = z2+2*z-x;
-        }
-    }
-    cout << ans << "\n";
+void rsolve() {
 }
+/*
+n^2 * (n^2-1)
+- 4 * 2  // 4 squares where it attacks 2 spaces
+- 8 * 3  // 8 squares where it attacks 3 spaces
 
+*/
 void solve() {
-    int t;
-    cin >> t;
-    while(t--) {
-        // every test
-        ll y, x;
-        cin >> y >> x;
-        rsolve(x,y);
+    int input;
+    cin >> input;
+    for(int i = 1; i <= input; i++) {
+        ll a1 = i*i;
+        ll a2 = a1*(a1-1)/2;
+        if(i > 2)
+            a2-=4*(i-1)*(i-2);
+        cout << a2 << "\n";
     }
 }
 
@@ -73,4 +52,4 @@ int main() {
     solve();
 }
 
-// TIME: 22 min
+// TIME: 8 min

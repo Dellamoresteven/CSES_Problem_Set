@@ -25,46 +25,46 @@ typedef pair<int, int> pii;
 typedef vector<vector<ll>> matrix;
 typedef pair<ll, ll> pll;
 
-
 // remember you may need to reset state
 /*
-1
-1 3
-= 9
+n+0 n+1 n+2 n+3 n+4 n+5 n+6 n+7 n+8 ... n+n
 
-1
-2 3
-= 8
+n+0 n+1 n+2 n+3 n+4 n+5 n+6 n+7
 */
-void rsolve(ll x, ll y) {
-    if(x == 0 && y == 0){cout << "1"; return;}
-    ll z = max(x,y);
-    ll z2 = (z-1)*(z-1), ans;
-    if(z%2) {
-        if(y==z) {
-            ans = z2+x;
-        } else {
-            ans = z2+2*z-y;
-        }
-    } else {
-        if(x==z){
-            ans=z2+y;
-        }else {
-            ans = z2+2*z-x;
-        }
-    }
-    cout << ans << "\n";
+void rsolve() {
 }
 
 void solve() {
-    int t;
-    cin >> t;
-    while(t--) {
-        // every test
-        ll y, x;
-        cin >> y >> x;
-        rsolve(x,y);
+    int n;
+    cin >> n;
+    vi one;
+    vi two;
+    bool safeOdd = false;
+    for(int i = 1; i <= n/2; i+=2){
+        one.push_back(i);
+        one.push_back(n-i+1);
+        if(i+1 == n-i){
+            safeOdd = true;
+        } else {
+            two.push_back(i+1);
+            two.push_back(n-i);
+        }
     }
+    if(n%2==1 && !safeOdd) { // odd
+
+    }
+
+
+
+
+    cout << "YES" << "\n";
+    cout << one.size() << "\n";
+    for(int i=0; i < one.size(); i++)
+        std::cout << one.at(i) << ' ';
+
+    cout << "\n" << two.size() << "\n";
+    for(int i=0; i < two.size(); i++)
+        std::cout << two.at(i) << ' ';
 }
 
 int main() {
@@ -72,5 +72,3 @@ int main() {
     cin.tie(NULL); cout.tie(NULL);
     solve();
 }
-
-// TIME: 22 min
