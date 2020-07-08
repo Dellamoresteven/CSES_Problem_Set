@@ -11,6 +11,7 @@
 #include <set>
 #include <stack>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -18,18 +19,19 @@ using namespace std;
 #define trav(a, x) for(auto& a : x)
 #define all(x) x.begin(), x.end()
 #define sz(x) (int)(x).size()
-typedef vector<int> vi;
+#define rl(x) getline(cin, x); stringstream ss(x);
 
+typedef vector<int> vi;
 typedef long long ll;
 typedef pair<int, int> pii;
-typedef vector<vector<ll>> matrix;
+typedef vector<vector<ll> > matrix;
 typedef pair<ll, ll> pll;
 
 // remember you may need to reset state
 /*
-n+0 n+1 n+2 n+3 n+4 n+5 n+6 n+7 n+8 ... n+n
-
-n+0 n+1 n+2 n+3 n+4 n+5 n+6 n+7
+1 2 3 4 5 6
+1 2 3 4
+n+0 n+1 n+2 n+3
 */
 void rsolve() {
 }
@@ -37,33 +39,43 @@ void rsolve() {
 void solve() {
     int n;
     cin >> n;
-    vi one;
-    vi two;
-    bool safeOdd = false;
-    for(int i = 1; i <= n/2; i+=2){
-        one.push_back(i);
-        one.push_back(n-i+1);
-        if(i+1 == n-i){
-            safeOdd = true;
-        } else {
-            two.push_back(i+1);
-            two.push_back(n-i);
-        }
-    }
-    if(n%2==1 && !safeOdd) { // odd
 
+    if(n%4!=0 && n%2==0){
+        cout << "NO";
+        return;
+    } else if(n%4==1) {
+        cout << "NO";
+        return;
     }
 
+    vi one, two;
+    int startAt = n%4 ? 3 : 4;
+    for(int i = 1; i < n-4; i+=4) {
+        one.push_back(i+0+startAt);
+        one.push_back(i+3+startAt);
+        two.push_back(i+1+startAt);
+        two.push_back(i+2+startAt);
+    }
 
-
+    if(n%4){
+        one.push_back(1);
+        one.push_back(2);
+        two.push_back(3);
+    } else {
+        one.push_back(1);
+        one.push_back(4);
+        two.push_back(2);
+        two.push_back(3);
+    }
 
     cout << "YES" << "\n";
+
     cout << one.size() << "\n";
-    for(int i=0; i < one.size(); i++)
+    rep(i,0,one.size())
         std::cout << one.at(i) << ' ';
 
     cout << "\n" << two.size() << "\n";
-    for(int i=0; i < two.size(); i++)
+    rep(i,0,two.size())
         std::cout << two.at(i) << ' ';
 }
 
